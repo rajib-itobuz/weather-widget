@@ -8,6 +8,28 @@ body {
   background: #f8f8ff;
 }
 
+section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+input {
+  padding: 20px;
+  background: transparent;
+  border: 2px solid gray;
+  border-radius: 1rem;
+  width: 40%;
+  min-width: 370px;
+}
+
+#errorArea {
+  content: "";
+  color: #eb6c49;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
 .container {
   padding: 30px 60px;
   position: relative;

@@ -10,63 +10,71 @@
 
 <body>
 
-    <div class="container rainy">
-        <h5>Cloudly</h5>
-        <div class="inner-content">
-            <h1>27<span>o</span>&nbsp; </h1>
-            <span class="divider"></span>
-            <div class="details">
-                <h3>Sunday, 12 July</h3>
-                <h4><img src="images/location.svg" alt="location" width="18px"> Paris</h4>
+
+    <section>
+        <input type="text" id="locationInput">
+        <span id="errorArea"></span>
+
+        <div class="container rainy" id="weatherCard">
+            <h5 id="condition">Cloudly</h5>
+            <div class="inner-content">
+                <h1 id="temp">27<span>o</span>&nbsp; </h1>
+                <span class="divider"></span>
+                <div class="details">
+                    <h3 id="date">Sunday, 12 July</h3>
+                    <h4 id="location"><img src="images/location.svg" alt="location" width="18px"> Paris</h4>
+                </div>
             </div>
+
+
+            <div class="sunny-vector">
+                <span class="sunlight-dark-shade"></span>
+                <span class="sunlight-light-shade">
+                </span>
+                <span class="sun"></span>
+            </div>
+
+            <div class="night-vector">
+                <div class="moon"></div>
+            </div>
+
+            <div class="rainy-vector">
+                <img src="images/thunder.svg" alt="thunder" width="40px">
+            </div>
+
+
+            <div class="background-illustration">
+                <div class="drop-column">
+                    <span class="night-hide"></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="drop-column">
+                    <span class="rainy-hide"></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="drop-column night-hide">
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="drop-column night-hide">
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="drop-column night-hide">
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </div>
+
+
         </div>
+    </section>
 
 
-        <div class="sunny-vector">
-            <span class="sunlight-dark-shade"></span>
-            <span class="sunlight-light-shade">
-            </span>
-            <span class="sun"></span>
-        </div>
-
-        <div class="night-vector">
-            <div class="moon"></div>
-        </div>
-
-        <div class="rainy-vector">
-            <img src="images/thunder.svg" alt="thunder" width="40px">
-        </div>
-
-
-        <div class="background-illustration">
-            <div class="drop-column">
-                <span class="night-hide"></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="drop-column">
-                <span class="rainy-hide"></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="drop-column night-hide">
-                <span></span>
-                <span></span>
-            </div>
-            <div class="drop-column night-hide">
-                <span></span>
-                <span></span>
-            </div>
-            <div class="drop-column night-hide">
-                <span></span>
-                <span></span>
-            </div>
-
-        </div>
-
-
-    </div>
-
+    <script src="script.js"></script>
 </body>
 
 </html>
