@@ -30,6 +30,13 @@ const months = [
   "December",
 ];
 
+const clearweatherCardField = () => {
+  tempField.textContent = `---`;
+  locationField.textContent = `---`;
+  conditionField.textContent = "----";
+  dateField.textContent = `---`;
+};
+
 async function getWeatherData(location) {
   try {
     const response = await fetch(
@@ -47,12 +54,14 @@ async function getWeatherData(location) {
         .toString()
         .substring(11)}`;
       errorField.style.color = "#31572c";
+
       tempField.textContent = `${weatherData.current.feelslike_c.toFixed(0)}`;
       locationField.textContent = `${weatherData.location.name}`;
       conditionField.textContent = weatherData.current.condition.text;
       dateField.textContent = `${daysList[date.getDay()]}, ${date.getDate()} ${
         months[date.getMonth()]
       }`;
+
       if (weatherData.current.precip_mm > 0)
         weatherCard.classList.replace(weatherCard.classList[1], "rainy");
       else if (weatherData.current.is_day) {
@@ -62,10 +71,7 @@ async function getWeatherData(location) {
       }
     }
   } catch (error) {
-    tempField.textContent = `----`;
-    locationField.textContent = `---`;
-    conditionField.textContent = "----";
-    dateField.textContent = `---`;
+    clearweatherCardField();
     errorField.textContent = "Location not found";
     errorField.style.color = "#ef476f";
   }
@@ -75,7 +81,4 @@ locationInput.addEventListener("change", (e) => {
   getWeatherData(e.target.value);
 });
 
-tempField.textContent = `----`;
-locationField.textContent = `---`;
-conditionField.textContent = "----";
-dateField.textContent = `---`;
+clearweatherCardField();

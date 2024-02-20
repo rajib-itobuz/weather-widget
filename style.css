@@ -38,10 +38,12 @@ input {
   box-shadow: 5px 5px 10px 2px #c5dCff;
   width: 700px;
 }
+
 .container .inner-content {
   gap: 10px;
   display: flex;
 }
+
 .container .inner-content .divider {
   background-color: white;
   width: 2px;
@@ -49,12 +51,14 @@ input {
   border-radius: 50%;
   height: 80px;
 }
+
 .container .details {
   display: flex;
   margin-left: 10px;
   flex-direction: column;
   justify-content: center;
 }
+
 .container h1 {
   z-index: 5;
   position: relative;
@@ -62,29 +66,34 @@ input {
   font-size: 90px;
   font-weight: 500;
 }
+
 .container h1 span:nth-of-type(2) {
   position: absolute;
   font-size: 20px;
   top: 10px;
   right: 1px;
 }
+
 .container h3 {
   z-index: 5;
   font-size: 30px;
   font-weight: 400;
   margin: 0px !important;
 }
+
 .container h4 {
   font-weight: 400;
   font-size: 25px;
   margin: 0px;
   margin-top: 10px;
 }
+
 .container h5 {
   font-size: 25px;
   font-weight: 400;
   margin: 0px !important;
 }
+
 .container .sunny-vector .sun {
   width: 170px;
   position: absolute;
@@ -97,6 +106,7 @@ input {
   box-shadow: -5px 5px 50px 15px #FDF5E6;
   border-radius: 50%;
 }
+
 .container .sunny-vector .sunlight-dark-shade {
   position: absolute;
   top: -75px;
@@ -104,11 +114,12 @@ input {
   width: 250px;
   background-color: #48e4fe;
   -webkit-backdrop-filter: blur(25px);
-          backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
   height: 250px;
   opacity: 0.7;
   border-radius: 50%;
 }
+
 .container .sunny-vector .sunlight-light-shade {
   position: absolute;
   top: -90px;
@@ -116,11 +127,12 @@ input {
   width: 300px;
   opacity: 0.4;
   -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   background-color: #37cefe;
   height: 300px;
   border-radius: 50%;
 }
+
 .container .night-vector {
   position: absolute;
   width: 200px;
@@ -131,6 +143,7 @@ input {
   right: -1%;
   transform: translate(0%, -50%);
 }
+
 .container .night-vector .moon {
   width: 80px;
   background: radial-gradient(circle at 70% 30%, rgba(0, 0, 0, 0) 34px, rgb(255, 177, 5) 20px, rgb(199, 193, 128) 70px);
@@ -140,10 +153,11 @@ input {
   top: 6%;
   border-radius: 50%;
 }
+
 .container .rainy-vector {
   position: absolute;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   width: 200px;
   z-index: 5;
   height: 200px;
@@ -152,6 +166,7 @@ input {
   top: -30%;
   right: -1%;
 }
+
 .container .rainy-vector img {
   z-index: 3;
   position: absolute;
@@ -159,6 +174,7 @@ input {
   left: 50%;
   transform: translate(-50%, 0%);
 }
+
 .container .background-illustration {
   position: absolute;
   bottom: 0px;
@@ -168,6 +184,7 @@ input {
   flex-direction: row;
   gap: 60px;
 }
+
 .container .background-illustration .drop-column {
   width: -moz-fit-content;
   width: fit-content;
@@ -176,6 +193,7 @@ input {
   gap: 40px;
   justify-content: end;
 }
+
 .container .background-illustration .drop-column span {
   display: inline-block;
 }
@@ -183,9 +201,11 @@ input {
 .sunny {
   background: linear-gradient(to right, #1a84fe, #62cff4);
 }
+
 .sunny .rainy-vector {
   visibility: hidden;
 }
+
 .sunny .night-vector {
   visibility: hidden;
 }
@@ -193,9 +213,11 @@ input {
 .rainy {
   background: linear-gradient(to right, #0ebea6, #65eea3);
 }
+
 .rainy .sunny-vector {
   visibility: hidden;
 }
+
 .rainy .background-illustration .drop-column span {
   width: 8px;
   opacity: 0.4;
@@ -203,9 +225,11 @@ input {
   border-radius: 30%;
   background: linear-gradient(to bottom, transparent, white 110%);
 }
+
 .rainy .rainy-hide {
   visibility: hidden;
 }
+
 .rainy .night-vector {
   visibility: hidden;
 }
@@ -213,12 +237,15 @@ input {
 .night {
   background: linear-gradient(to right, #2f62f5, #bc81da);
 }
+
 .night .rainy-vector {
   visibility: hidden;
 }
+
 .night .night-hide {
   visibility: hidden;
 }
+
 .night .background-illustration .drop-column span:nth-child(even) {
   width: 20px;
   height: 20px;
@@ -226,6 +253,7 @@ input {
   opacity: 0.3;
   background: radial-gradient(white 20%, transparent);
 }
+
 .night .background-illustration .drop-column span:nth-child(odd) {
   width: 10px;
   height: 10px;
@@ -233,6 +261,9 @@ input {
   opacity: 0.3;
   background: radial-gradient(white 20%, transparent);
 }
+
 .night .sunny-vector {
   visibility: hidden;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
