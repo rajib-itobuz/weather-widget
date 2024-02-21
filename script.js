@@ -37,6 +37,22 @@ const clearweatherCardField = () => {
   dateField.textContent = `---`;
 };
 
+const validateWeatherData = (apiLocation, current) => {
+  if (!apiLocation) throw new Error("Erroneous Data");
+  else if (!"name" in apiLocation && "localtime" in apiLocation)
+    throw new Error("Erroneous Data");
+
+  if (!current) throw new Error("Erroneous Data");
+  else if (
+    !"last_updated" in current &&
+    "feelslike_c" in current &&
+    "condition" in current &&
+    "precip_mm" in current &&
+    "is_day" in current
+  )
+    throw new Error("Erroneous Data");
+};
+
 async function getWeatherData(location) {
   try {
     const response = await fetch(
@@ -45,35 +61,59 @@ async function getWeatherData(location) {
         mode: "cors",
       }
     );
+
     const weatherData = await response.json();
 
-    if (weatherData) {
-      const date = new Date(weatherData.location.localtime);
+    const { location: apiLocation = undefined, current = undefined } =
+      weatherData;
 
-      errorField.innerHTML = `Data Fetched at : ${weatherData.current.last_updated
-        .toString()
-        .substring(11)}`;
-      errorField.style.color = "#31572c";
+    validateWeatherData(apiLocation, current);
 
-      tempField.textContent = `${weatherData.current.feelslike_c.toFixed(0)}`;
-      locationField.textContent = `${weatherData.location.name}`;
-      conditionField.textContent = weatherData.current.condition.text;
-      dateField.textContent = `${daysList[date.getDay()]}, ${date.getDate()} ${
-        months[date.getMonth()]
-      }`;
+    const { name, localtime } = apiLocation;
+    const { last_updated, feelslike_c, condition, precip_mm, is_day } = current;
 
-      if (weatherData.current.precip_mm > 0)
-        weatherCard.classList.replace(weatherCard.classList[1], "rainy");
-      else if (weatherData.current.is_day) {
-        weatherCard.classList.replace(weatherCard.classList[1], "sunny");
-      } else {
-        weatherCard.classList.replace(weatherCard.classList[1], "night");
-      }
+    const date = new Date(localtime);
+
+    errorField.innerHTML = `Last updated at : ${last_updated
+      .toString()
+      .substring(11)}`;
+    errorField.style.color = "#31572c";
+
+    tempField.textContent = `${feelslike_c.toFixed(0)}`;
+    locationField.textContent = `${name}`;
+    conditionField.textContent = condition.text;
+    dateField.textContent = `${daysList[date.getDay()]}, ${date.getDate()} ${
+      months[date.getMonth()]
+    }`;
+
+    if (precip_mm > 0) {
+      weatherCard.classList.remove(...weatherCard.classList);
+      weatherCard.className = "container rainy";
+    } else if (is_day) {
+      weatherCard.classList.remove(...weatherCard.classList);
+      weatherCard.className = "container sunny";
+    } else {
+      weatherCard.classList.remove(...weatherCard.classList);
+      weatherCard.className = "container night";
     }
   } catch (error) {
     clearweatherCardField();
-    errorField.textContent = "Location not found";
+    errorField.textContent = error.message;
     errorField.style.color = "#ef476f";
+  }
+}
+
+async function getCurrentLocation(position) {
+  try {
+    const response = await fetch(
+      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.latitude}&longitude=${position.longitude}&localityLanguage=en`
+    );
+
+    const { city } = await response.json();
+    if (city) getWeatherData(city);
+    else throw Error;
+  } catch (error) {
+    console.error("Cannot fetch current Location");
   }
 }
 
@@ -81,4 +121,11 @@ locationInput.addEventListener("change", (e) => {
   getWeatherData(e.target.value);
 });
 
-clearweatherCardField();
+(() => {
+  clearweatherCardField();
+  errorField.innerHTML = `Detecting Location ....`;
+  errorField.style.color = "#31572c";
+  window.navigator.geolocation.getCurrentPosition((position) => {
+    getCurrentLocation(position);
+  });
+})();
